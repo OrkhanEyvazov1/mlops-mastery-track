@@ -226,15 +226,11 @@ export default function App() {
             <Award className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
             <div>
               <h3 className="font-semibold text-xl text-gray-900 mb-2">
-                You Cannot Be an Architect if Your Code Only Lives in a Notebook
+                We Cannot Be an Architect if Our Code Only Lives in a Notebook
               </h3>
               <p className="text-gray-700 mb-3">
-                This roadmap transforms you from a data scientist into an ML Engineer who builds production-grade systems. 
+                This roadmap transforms us from a data scientist into an ML Engineer,Mlops engineer who builds production-grade systems. 
                 Each phase builds on the previous one, creating a solid foundation for deploying machine learning at scale.
-              </p>
-              <p className="text-sm text-gray-600">
-                <strong>Note:</strong> You don't need Step 15 (Apache Airflow) to get your first MLOps job. 
-                Focus on mastering Phases 1-4 first, then add monitoring capabilities from Phase 5.
               </p>
             </div>
           </div>
