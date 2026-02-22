@@ -1,0 +1,48 @@
+name: Deploy React/TS to GitHub Pages
+
+# 1. When does the robot wake up? Every time you push to the 'main' branch.
+on:
+  push:
+    branches: ["main"]
+
+# 2. Give the robot permission to push to your public website.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # 3. The "Kitchen" Phase: Install and Compile
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # The engine needed to read .tsx
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Build the Project (Compile .tsx to HTML/JS)
+        run: npm run build
+        
+      - name: Upload the finished HTML to the server
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # IMPORTANT: Change to './build' if you aren't using Vite
+
+  # 4. The "Serving" Phase: Put it on the internet
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
